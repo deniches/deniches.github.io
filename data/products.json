@@ -3544,5 +3544,59 @@
 		"source": null,
 		"dateAjout": "2026-08-01",
 		"titre": "フランス語ABCパズル"
+	},
+	{
+		"asin": "B0FS2236WJ",
+		"lienAffilie": "https://www.amazon.com/dp/B0FS2236WJ?tag=amazon0a8c6a-20",
+		"image": "https://m.media-amazon.com/images/I/71G47wcEgKL._AC_UY654_QL65_.jpg",
+		"prix": "$14.99",
+		"source": null,
+		"dateAjout": "2026-08-01",
+		"titre": "Electronique pour les Nuls - 4e édition (Poche pour les nuls) (French Edition)"
+	},
+	{
+		"asin": "2754066721",
+		"lienAffilie": "https://www.amazon.com/dp/2754066721?tag=amazon0a8c6a-20",
+		"image": "https://m.media-amazon.com/images/I/81efL1bzJ2L._AC_UY654_QL65_.jpg",
+		"prix": "$18.99",
+		"source": null,
+		"dateAjout": "2026-08-01",
+		"titre": "Culture High Tech Pour les Nuls"
+	},
+	{
+		"asin": "B0GDVFX8HJ",
+		"lienAffilie": "https://www.amazon.com/dp/B0GDVFX8HJ?tag=amazon0a8c6a-20",
+		"image": "https://m.media-amazon.com/images/I/71+pETza1WL._AC_UY654_QL65_.jpg",
+		"prix": "$0.00",
+		"source": null,
+		"dateAjout": "2026-08-01",
+		"titre": "De l’Électronique au Code: Du transistor à Python : la chaîne complète expliquée simplement, avec projets concrets. (L’ÉLECTRONIQUE FACILE (pour débutants &amp; autodidactes)) (French Edition)"
+	},
+	{
+		"asin": "B0CV19XSX5",
+		"lienAffilie": "https://www.amazon.com/dp/B0CV19XSX5?tag=amazon0a8c6a-20",
+		"image": "https://m.media-amazon.com/images/I/61wmwsfNuLL._AC_UY654_QL65_.jpg",
+		"prix": "$0.00",
+		"source": null,
+		"dateAjout": "2026-08-01",
+		"titre": "Electronique de base pour débutants: Découverte du monde des Circuits (Master en Electronique: Du débutant à l&#x27;ingénieur t. 1) (French Edition)"
+	},
+	{
+		"asin": "B0DK8BN2QK",
+		"lienAffilie": "https://www.amazon.com/dp/B0DK8BN2QK?tag=amazon0a8c6a-20",
+		"image": "https://m.media-amazon.com/images/I/51tu+Sf4TwL._AC_UY654_QL65_.jpg",
+		"prix": "$0.00",
+		"source": null,
+		"dateAjout": "2026-08-01",
+		"titre": "Robotique et électronique embarquée : applications et tendances (French Edition)"
+	},
+	{
+		"asin": "B089M43WP3",
+		"lienAffilie": "https://www.amazon.com/dp/B089M43WP3?tag=amazon0a8c6a-20",
+		"image": "https://m.media-amazon.com/images/I/41WSCEznvJL._AC_UY500_QL65_.jpg",
+		"prix": "$6.32",
+		"source": null,
+		"dateAjout": "2026-08-01",
+		"titre": "Suivi de l&#x27;entretien de la maison: Planning de suivi de l&#x27;entretien de la maison | Idée cadeau fête des mères et des pères | Suivi facile avec planning et notes | 6*9 po 104 pages (French Edition)"
 	}
 ]
