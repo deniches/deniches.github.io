@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dénichés — Today's finds</title>
 <meta name="description" content="A daily selection of great deals spotted on Amazon: targeted searches, current bestsellers and gems shared elsewhere, curated for you.">
+<meta name="spread-connecte-api" content="bca50d90-5c56-416b-b118-f81478948cdf">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap[...]" rel="stylesheet">
@@ -309,7 +310,7 @@
   <div class="footer-inner">
     <p class="disclosure">As an Amazon Associate I earn from qualifying purchases. Links on this page are affiliate links; purchases may generate a small commission at no extra cost to you.</p>
     <div class="footer-meta">
-      <span>Déniché — catalog generated automatically</span>
+      <span>Dénichés — catalog generated automatically</span>
       <span id="lastUpdate"></span>
     </div>
   </div>
@@ -317,6 +318,10 @@
 
 <script>
 (function(){
+  // SpreadConnecte API identifier (added per request)
+  const SPREAD_CONNECTE_API = 'bca50d90-5c56-416b-b118-f81478948cdf';
+  window.SPREAD_CONNECTE_API = SPREAD_CONNECTE_API;
+
   const SOURCE_LABEL = { recherche: 'Find', bestsellers: 'Bestseller', reddit: 'Spotted elsewhere' };
   const PAGE_SIZE = 24;
 
