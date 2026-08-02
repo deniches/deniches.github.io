@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en-US">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dénichés — Les trouvailles du jour</title>
-<meta name="description" content="Une sélection quotidienne de bons plans repérés sur Amazon : recherche, meilleures ventes et pépites partagées ailleurs, triées pour vous.">
+<title>Dénichés — Today's finds</title>
+<meta name="description" content="A daily selection of great deals spotted on Amazon: targeted searches, current bestsellers and gems shared elsewhere, curated for you.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap[...]" rel="stylesheet">
 <style>
   :root{
     --paper:#EDE9DF;
@@ -125,7 +125,7 @@
     color:var(--ink-soft);
     transition:background .15s ease,color .15s ease,border-color .15s ease;
   }
-  .chip:hover{border-color:var(--moss);}
+  .chip:hover{border-color:var(--moss);} 
   .chip.active{
     background:var(--moss);border-color:var(--moss);color:#fff;
   }
@@ -256,7 +256,7 @@
   :focus-visible{outline:2px solid var(--moss);outline-offset:2px;}
 
   @media (max-width:640px){
-    .hero{padding:44px 0 28px;}
+    .hero{padding:44px 0 28px;} 
     .controls{position:static;}
   }
 </style>
@@ -266,18 +266,18 @@
 <header class="site">
   <div class="site-bar">
     <div class="logo">Déni<span>chés</span></div>
-    <div class="tagline">les trouvailles du jour, sans le blabla</div>
+    <div class="tagline">daily finds, no fluff</div>
   </div>
 </header>
 
 <div class="wrap">
   <section class="hero">
-    <h1>Ce qui mérite <em>vraiment</em> votre attention aujourd'hui.</h1>
-    <p class="lede">Une sélection repérée sur Amazon — recherches ciblées, meilleures ventes du moment et pépites partagées ailleurs. Triée et remise à jour chaque jour, sans page interminable à scroller pour rien.</p>
+    <h1>What truly deserves <em>your</em> attention today.</h1>
+    <p class="lede">A selection spotted on Amazon — targeted searches, current bestsellers and gems shared elsewhere. Curated and refreshed daily, without the filler.</p>
     <div class="stat-line">
-      <span><b id="statTotal">—</b> trouvailles au catalogue</span>
-      <span><b id="statSources">3</b> sources croisées</span>
-      <span>mise à jour <b>quotidienne</b></span>
+      <span><b id="statTotal">—</b> items in the catalog</span>
+      <span><b id="statSources">3</b> cross-checked sources</span>
+      <span>updated <b>daily</b></span>
     </div>
   </section>
 </div>
@@ -286,30 +286,30 @@
   <div class="wrap controls-inner">
     <div class="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="searchInput" type="text" placeholder="Chercher dans les trouvailles (référence, mot-clé)…" autocomplete="off">
+      <input id="searchInput" type="text" placeholder="Search the finds (ASIN, keyword)…" autocomplete="off">
     </div>
     <div class="chips" id="chips">
-      <button class="chip active" data-source="all">Tout</button>
-      <button class="chip" data-source="recherche">Trouvailles</button>
-      <button class="chip" data-source="bestsellers">Meilleures ventes</button>
-      <button class="chip" data-source="reddit">Repérés ailleurs</button>
+      <button class="chip active" data-source="all">All</button>
+      <button class="chip" data-source="recherche">Finds</button>
+      <button class="chip" data-source="bestsellers">Bestsellers</button>
+      <button class="chip" data-source="reddit">Spotted elsewhere</button>
     </div>
   </div>
 </div>
 
 <main class="wrap">
   <div class="grid" id="grid"></div>
-  <div class="empty" id="emptyState" style="display:none;">Rien ne correspond à cette recherche — essayez un autre mot-clé.</div>
+  <div class="empty" id="emptyState" style="display:none;">No results match that search — try another keyword.</div>
   <div class="load-more" id="loadMoreWrap" style="display:none;">
-    <button id="loadMoreBtn">Voir plus de trouvailles</button>
+    <button id="loadMoreBtn">See more finds</button>
   </div>
 </main>
 
 <footer>
   <div class="footer-inner">
-    <p class="disclosure">En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises. Les liens de cette page sont des liens d'affiliation Amazon : cliquer et acheter ne vous coûte rien de plus, mais peut nous reverser une petite commission.</p>
+    <p class="disclosure">As an Amazon Associate I earn from qualifying purchases. Links on this page are affiliate links; purchases may generate a small commission at no extra cost to you.</p>
     <div class="footer-meta">
-      <span>Déniché — catalogue généré automatiquement</span>
+      <span>Déniché — catalog generated automatically</span>
       <span id="lastUpdate"></span>
     </div>
   </div>
@@ -317,7 +317,7 @@
 
 <script>
 (function(){
-  const SOURCE_LABEL = { recherche: 'Trouvaille', bestsellers: 'Meilleure vente', reddit: 'Repéré ailleurs' };
+  const SOURCE_LABEL = { recherche: 'Find', bestsellers: 'Bestseller', reddit: 'Spotted elsewhere' };
   const PAGE_SIZE = 24;
 
   let all = [];
@@ -335,42 +335,42 @@
   function placeholderThumb(){
     return `<div class="thumb placeholder">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <span>Aperçu à venir</span>
+      <span>Preview coming soon</span>
     </div>`;
   }
 
-  // Si une URL d'image récupérée est cassée (404, lien mort après enrichissement...),
-  // on retombe proprement sur le placeholder au lieu de montrer une icône d'image cassée.
+  // If an image URL is broken (404, dead link after enrichment...),
+  // fall back cleanly to the placeholder instead of showing a broken image icon.
   window.__imgFallback = function(img, source){
     const wrap = img.closest('.thumb');
     if(!wrap) return;
     wrap.classList.add('placeholder');
     wrap.innerHTML = `<span class="stamp ${source}">${SOURCE_LABEL[source]||source}</span>
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <span>Aperçu à venir</span>`;
+      <span>Preview coming soon</span>`;
   };
 
   function cardHTML(p){
     const thumb = p.image
-      ? `<div class="thumb"><img src="${p.image}" alt="${(p.titre||'Produit Amazon').replace(/"/g,'&quot;')}" loading="lazy" onerror="window.__imgFallback(this,'${p.source}')"><span class="stamp ${p.source}">${SOURCE_LABEL[p.source]||p.source}</span></div>`
+      ? `<div class="thumb"><img src="${p.image}" alt="${(p.titre||'Amazon product').replace(/"/g,'&quot;')}" loading="lazy" onerror="window.__imgFallback(this,'${p.source}')"><span class="stamp ${p.source}">${SOURCE_LABEL[p.source]||p.source}</span></div>`
       : `<div class="thumb placeholder"><span class="stamp ${p.source}">${SOURCE_LABEL[p.source]||p.source}</span>
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <span>Aperçu à venir</span></div>`;
+          <span>Preview coming soon</span></div>`;
 
     const title = p.titre
       ? `<p class="title">${p.titre}</p>`
-      : `<p class="title fallback">Produit repéré — fiche à consulter sur Amazon</p>`;
+      : `<p class="title fallback">Product spotted — check the Amazon listing</p>`;
 
     const price = p.prix ? `<div class="price">${p.prix}</div>` : '';
 
     return `<article class="card">
       ${thumb}
       <div class="body">
-        <div class="specimen">Réf. ${p.asin}</div>
+        <div class="specimen">Ref. ${p.asin}</div>
         ${title}
         ${price}
         <a class="cta" href="${p.lienAffilie}" target="_blank" rel="nofollow sponsored noopener">
-          Voir l'offre
+          View offer
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </a>
       </div>
@@ -417,13 +417,13 @@
       document.getElementById('statTotal').textContent = all.length;
       const dates = all.map(p => p.dateAjout).filter(Boolean).sort();
       document.getElementById('lastUpdate').textContent = dates.length
-        ? `dernier ajout : ${dates[dates.length-1].slice(0,10)}`
+        ? `last added: ${dates[dates.length-1].slice(0,10)}`
         : '';
       applyFilters();
     })
     .catch(() => {
       grid.innerHTML = '';
-      emptyState.textContent = 'Le catalogue n\u2019a pas pu être chargé — vérifiez que data/products.json est bien présent.';
+      emptyState.textContent = 'The catalog could not be loaded — make sure data/products.json is present.';
       emptyState.style.display = 'block';
     });
 })();
