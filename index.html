@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dénichés — Today's finds</title>
 <meta name="description" content="A daily selection of great deals spotted on Amazon: targeted searches, current bestsellers and gems shared elsewhere, curated for you.">
-<meta name="spread-connecte-api" content="bca50d90-5c56-416b-b118-f81478948cdf">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap[...]" rel="stylesheet">
@@ -20,6 +19,7 @@
     --ochre:#C08A2E;
     --ochre-soft:#E9D6AE;
     --rust:#A8462F;
+    --indigo:#3D5170;
     --line:#D8D2C2;
     --card:#FFFDF8;
     --radius:2px;
@@ -190,6 +190,7 @@
   .stamp.recherche{color:var(--moss-deep);}
   .stamp.bestsellers{color:var(--rust);}
   .stamp.reddit{color:var(--ochre);}
+  .stamp.spod{color:var(--indigo);}
 
   .body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
   .specimen{
@@ -217,6 +218,22 @@
     transition:background .15s ease;
   }
   .cta:hover{background:var(--moss-deep);}
+
+  /* ---------- goodies (Spreadconnect) section ---------- */
+  .goodies-intro{padding:56px 0 28px;border-top:1px solid var(--line);margin-top:24px;}
+  .section-kicker{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--indigo);margin:0 0 10px;
+  }
+  .goodies-intro h2{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(1.7rem,3.4vw,2.3rem);
+    line-height:1.1;letter-spacing:-0.01em;
+    max-width:18ch;margin:0 0 14px;
+  }
+  .goodies-intro h2 em{font-style:italic;color:var(--indigo);}
+  .goodies-intro p.lede{max-width:56ch;font-size:1rem;color:var(--ink-soft);line-height:1.55;margin:0;}
+  .goodies-main{padding:8px 0 20px;}
 
   /* ---------- load more / empty ---------- */
   .load-more{
@@ -306,6 +323,19 @@
   </div>
 </main>
 
+<div class="wrap">
+  <section class="goodies-intro">
+    <div class="section-kicker">Print-on-demand</div>
+    <h2>Goodies, made <em>to order</em>.</h2>
+    <p class="lede">Original designs on t-shirts, mugs, totes and more — printed on demand and shipped by Spreadconnect. Synced automatically from the Spreadconnect catalog.</p>
+  </section>
+</div>
+
+<main class="wrap goodies-main">
+  <div class="grid" id="goodiesGrid"></div>
+  <div class="empty" id="goodiesEmpty" style="display:none;">No goodies published yet — check back soon.</div>
+</main>
+
 <footer>
   <div class="footer-inner">
     <p class="disclosure">As an Amazon Associate I earn from qualifying purchases. Links on this page are affiliate links; purchases may generate a small commission at no extra cost to you.</p>
@@ -318,11 +348,7 @@
 
 <script>
 (function(){
-  // SpreadConnecte API identifier (added per request)
-  const SPREAD_CONNECTE_API = 'bca50d90-5c56-416b-b118-f81478948cdf';
-  window.SPREAD_CONNECTE_API = SPREAD_CONNECTE_API;
-
-  const SOURCE_LABEL = { recherche: 'Find', bestsellers: 'Bestseller', reddit: 'Spotted elsewhere' };
+  const SOURCE_LABEL = { recherche: 'Find', bestsellers: 'Bestseller', reddit: 'Spotted elsewhere', spod: 'Spreadconnect' };
   const PAGE_SIZE = 24;
 
   let all = [];
@@ -429,6 +455,81 @@
     .catch(() => {
       grid.innerHTML = '';
       emptyState.textContent = 'The catalog could not be loaded — make sure data/products.json is present.';
+      emptyState.style.display = 'block';
+    });
+})();
+</script>
+
+<script>
+(function(){
+  // Renders the Spreadconnect (print-on-demand) goodies section.
+  // Reads from a static, pre-generated JSON file — the same pattern used for
+  // data/products.json. The Spreadconnect API token is a secret and must
+  // never be called directly from this public, client-side script:
+  // see scripts/fetch-spreadconnect.mjs for how data/spreadconnect.json is built.
+  const grid = document.getElementById('goodiesGrid');
+  const emptyState = document.getElementById('goodiesEmpty');
+
+  function formatPrice(p){
+    if(p.priceMin == null) return '';
+    const cur = p.currency || '';
+    const min = p.priceMin.toFixed(2);
+    if(p.priceMax != null && p.priceMax !== p.priceMin){
+      return `${min}–${p.priceMax.toFixed(2)} ${cur}`;
+    }
+    return `${min} ${cur}`;
+  }
+
+  function metaLine(p){
+    const parts = [];
+    if(p.colors) parts.push(`${p.colors} colour${p.colors>1?'s':''}`);
+    if(p.sizes) parts.push(`${p.sizes} size${p.sizes>1?'s':''}`);
+    return parts.join(' · ');
+  }
+
+  function cardHTML(p){
+    const thumb = p.image
+      ? `<div class="thumb"><img src="${p.image}" alt="${(p.title||'Spreadconnect product').replace(/"/g,'&quot;')}" loading="lazy" onerror="window.__imgFallback(this,'spod')"><span class="stamp spod">Spreadconnect</span></div>`
+      : `<div class="thumb placeholder"><span class="stamp spod">Spreadconnect</span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>Preview coming soon</span></div>`;
+
+    const title = p.title
+      ? `<p class="title">${p.title}</p>`
+      : `<p class="title fallback">Product coming soon</p>`;
+
+    const meta = metaLine(p) ? `<div class="specimen">${metaLine(p)}</div>` : '';
+    const price = formatPrice(p) ? `<div class="price">${formatPrice(p)}</div>` : '';
+
+    const cta = p.url
+      ? `<a class="cta" href="${p.url}" target="_blank" rel="nofollow sponsored noopener">
+          View product
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>`
+      : `<span class="cta" style="opacity:.45;cursor:default;">Coming soon</span>`;
+
+    return `<article class="card">
+      ${thumb}
+      <div class="body">
+        ${meta}
+        ${title}
+        ${price}
+        ${cta}
+      </div>
+    </article>`;
+  }
+
+  fetch('data/spreadconnect.json')
+    .then(r => r.json())
+    .then(data => {
+      if(!Array.isArray(data) || data.length === 0){
+        emptyState.style.display = 'block';
+        return;
+      }
+      grid.innerHTML = data.map(cardHTML).join('');
+    })
+    .catch(() => {
+      emptyState.textContent = 'The goodies catalog could not be loaded — make sure data/spreadconnect.json is present.';
       emptyState.style.display = 'block';
     });
 })();
