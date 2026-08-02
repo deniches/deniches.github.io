@@ -441,10 +441,24 @@
     });
   });
 
+  // The n8n workflow that feeds data/products.json has changed shape over time:
+  // older rows use snake_case (lien_affilie) and have no `source`/`dateAjout`,
+  // newer rows use camelCase (lienAffilie, dateAjout) but sometimes leave
+  // `source` null. Normalize every row to one consistent shape here so the
+  // "View offer" link and the source filter chips work for every product,
+  // regardless of which version of the workflow produced it.
+  function normalizeProduct(p){
+    return {
+      ...p,
+      lienAffilie: p.lienAffilie || p.lien_affilie || null,
+      source: p.source || 'recherche',
+    };
+  }
+
   fetch('data/products.json')
     .then(r => r.json())
     .then(data => {
-      all = data;
+      all = data.map(normalizeProduct);
       document.getElementById('statTotal').textContent = all.length;
       const dates = all.map(p => p.dateAjout).filter(Boolean).sort();
       document.getElementById('lastUpdate').textContent = dates.length
